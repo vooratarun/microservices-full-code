@@ -1,0 +1,10 @@
+com/alibou/ecommerce/auth/RegisterRequest.class
+com/alibou/ecommerce/auth/AuthService.class
+com/alibou/ecommerce/auth/AuthController.class
+com/alibou/ecommerce/auth/PasswordEncoderConfig.class
+com/alibou/ecommerce/auth/User$UserBuilder.class
+com/alibou/ecommerce/auth/UserRepository.class
+com/alibou/ecommerce/auth/User.class
+com/alibou/ecommerce/auth/AuthResponse.class
+com/alibou/ecommerce/auth/AuthApplication.class
+com/alibou/ecommerce/auth/LoginRequest.class

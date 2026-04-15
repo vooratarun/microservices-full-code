@@ -1,11 +1,19 @@
 server:
-  port: 8090
+  port: 8091
 spring:
   data:
     mongodb:
-      username: alibou
-      password: alibou
+      username: appuser
+      password: app123
       host: localhost
       port: 27017
-      database: customer
-      authentication-database: admin
+      database: appdb
+      authentication-database: appdb
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    prefer-ip-address: true

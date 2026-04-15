@@ -24,7 +24,7 @@ public class NotificationsConsumer {
 
     private final NotificationRepository repository;
     private final EmailService emailService;
-    @KafkaListener(topics = "payment-topic")
+    @KafkaListener(topics = "payment-topic",  groupId = "paymentGroup")
     public void consumePaymentSuccessNotifications(PaymentConfirmation paymentConfirmation) throws MessagingException {
         log.info(format("Consuming the message from payment-topic Topic:: %s", paymentConfirmation));
         repository.save(
@@ -35,15 +35,15 @@ public class NotificationsConsumer {
                         .build()
         );
         var customerName = paymentConfirmation.customerFirstname() + " " + paymentConfirmation.customerLastname();
-        emailService.sendPaymentSuccessEmail(
-                paymentConfirmation.customerEmail(),
-                customerName,
-                paymentConfirmation.amount(),
-                paymentConfirmation.orderReference()
-        );
+//        emailService.sendPaymentSuccessEmail(
+//                paymentConfirmation.customerEmail(),
+//                customerName,
+//                paymentConfirmation.amount(),
+//                paymentConfirmation.orderReference()
+//        );
     }
 
-    @KafkaListener(topics = "order-topic")
+    @KafkaListener(topics = "order-topic", groupId = "orderGroup")
     public void consumeOrderConfirmationNotifications(OrderConfirmation orderConfirmation) throws MessagingException {
         log.info(format("Consuming the message from order-topic Topic:: %s", orderConfirmation));
         repository.save(
@@ -54,12 +54,12 @@ public class NotificationsConsumer {
                         .build()
         );
         var customerName = orderConfirmation.customer().firstname() + " " + orderConfirmation.customer().lastname();
-        emailService.sendOrderConfirmationEmail(
-                orderConfirmation.customer().email(),
-                customerName,
-                orderConfirmation.totalAmount(),
-                orderConfirmation.orderReference(),
-                orderConfirmation.products()
-        );
+//        emailService.sendOrderConfirmationEmail(
+//                orderConfirmation.customer().email(),
+//                customerName,
+//                orderConfirmation.totalAmount(),
+//                orderConfirmation.orderReference(),
+//                orderConfirmation.products()
+//        );
     }
 }

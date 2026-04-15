@@ -1,19 +1,20 @@
-package com.alibou.ecommerce.product;
+package com.alibou.ecommerce.category;
 
-import com.alibou.ecommerce.category.Category;
-import com.alibou.ecommerce.category.SubCategory;
+import com.alibou.ecommerce.product.Product;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.math.BigDecimal;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,19 +22,16 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @Entity
-public class Product {
+public class SubCategory {
 
     @Id
     @GeneratedValue
     private Integer id;
     private String name;
     private String description;
-    private double availableQuantity;
-    private BigDecimal price;
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
-    @ManyToOne
-    @JoinColumn(name = "subcategory_id")
-    private SubCategory subCategory;
+    @OneToMany(mappedBy = "subCategory", cascade = CascadeType.REMOVE)
+    private List<Product> products;
 }

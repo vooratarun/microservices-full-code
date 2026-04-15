@@ -3,12 +3,12 @@ server:
 spring:
   data:
     mongodb:
-      username: alibou
-      password: alibou
+      username: appuser
+      password: app123
       host: localhost
       port: 27017
-      database: notification
-      authentication-database: admin
+      database: appdb
+      authentication-database: appdb
   kafka:
     consumer:
       bootstrap-servers: localhost:9092
